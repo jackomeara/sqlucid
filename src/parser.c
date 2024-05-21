@@ -33,6 +33,12 @@ PrepareResult prepare_statement(InputBuffer *input_buffer, Statement *statement)
         return PREPARE_SUCCESS;
     }
 
+    if (strncmp(input_buffer->buffer, "delete", 6) == 0)
+    {
+        statement->type = STATEMENT_DELETE;
+        return PREPARE_SUCCESS;
+    }
+
     if (strcmp(input_buffer->buffer, "select") == 0)
     {
         statement->type = STATEMENT_SELECT;

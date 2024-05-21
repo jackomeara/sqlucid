@@ -27,11 +27,19 @@ typedef enum
     META_COMMAND_UNRECOGNIZED_COMMAND
 } MetaCommandResult;
 
+// command execution result status
+typedef enum
+{
+    EXECUTE_SUCCESS,
+    EXECUTE_TABLE_FULL
+} ExecuteResult;
+
 // sql statement mode types
 typedef enum
 {
     STATEMENT_INSERT,
-    STATEMENT_SELECT
+    STATEMENT_SELECT,
+    STATEMENT_DELETE
 } StatementType;
 
 // table row object
