@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "input.h"
+#include "parser.h"
 
 void print_prompt() { printf("db > "); }
 
@@ -15,8 +16,29 @@ int main()
         read_input(input_buffer);
 
         // handle meta command
+        if (input_buffer->buffer[0] == '.')
+        {
+            switch (do_meta_command(input_buffer))
+            {
+            case (META_COMMAND_SUCCESS):
+                continue;
+            case (META_COMMAND_UNRECOGNIZED_COMMAND):
+                printf("Unrecognized command '%s'", input_buffer->buffer);
+            }
+        }
 
         // prepare sql statement
+        Statement statement;
+        switch (prepare_statement(input_buffer, &statement))
+        {
+        case (PREPARE_SUCCESS):
+            break;
+        case (PREPARE_SYNTAX_ERROR):
+            printf("Syntax error. Could not parse statement.\n");
+            continue;
+        case (PREPARE_UNRECOGNIZED_STATEMENT):
+            printf("Unrecognized keyword at start of '%s'.\n", input_buffer->buffer);
+        }
 
         // execute sql statement
     }
