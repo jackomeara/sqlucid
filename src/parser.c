@@ -18,12 +18,12 @@ MetaCommandResult do_meta_command(InputBuffer *input_buffer)
 
 PrepareResult prepare_statement(InputBuffer *input_buffer, Statement *statement)
 {
-    if (strncmp(input_buffer->buffer, "insert", 6) == 0)
+    if (strncmp(input_buffer->buffer, "add", 3) == 0)
     {
-        statement->type = STATEMENT_INSERT;
+        statement->type = STATEMENT_ADD;
         int args_assigned = sscanf(
-            input_buffer->buffer, "insert %d %s", &(statement->row_to_insert.id),
-            statement->row_to_insert.username);
+            input_buffer->buffer, "add %d %s", &(statement->row_to_add.id),
+            statement->row_to_add.username);
 
         if (args_assigned < 2)
         {
@@ -39,9 +39,9 @@ PrepareResult prepare_statement(InputBuffer *input_buffer, Statement *statement)
         return PREPARE_SUCCESS;
     }
 
-    if (strcmp(input_buffer->buffer, "select") == 0)
+    if (strcmp(input_buffer->buffer, "get") == 0)
     {
-        statement->type = STATEMENT_SELECT;
+        statement->type = STATEMENT_GET;
         return PREPARE_SUCCESS;
     }
 

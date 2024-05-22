@@ -3,16 +3,16 @@
 
 void print_row(Row *row) { printf("(%d, %s)", row->id, row->username); }
 
-ExecuteResult execute_insert(Statement *statement)
+ExecuteResult execute_add(Statement *statement)
 {
-    printf("Insert will be done here.\n");
+    printf("Add will be done here.\n");
 
     return EXECUTE_SUCCESS;
 }
 
-ExecuteResult execute_select(Statement *statement)
+ExecuteResult execute_get(Statement *statement)
 {
-    printf("Select will be done here.\n");
+    printf("Get will be done here.\n");
 
     return EXECUTE_SUCCESS;
 }
@@ -28,10 +28,10 @@ ExecuteResult execute_statement(Statement *statement)
 {
     switch (statement->type)
     {
-    case (STATEMENT_INSERT):
-        return execute_insert(statement);
-    case (STATEMENT_SELECT):
-        return execute_select(statement);
+    case (STATEMENT_ADD):
+        return execute_add(statement);
+    case (STATEMENT_GET):
+        return execute_get(statement);
     case (STATEMENT_DELETE):
         return execute_delete(statement);
     }

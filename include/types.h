@@ -37,8 +37,8 @@ typedef enum
 // sql statement mode types
 typedef enum
 {
-    STATEMENT_INSERT,
-    STATEMENT_SELECT,
+    STATEMENT_ADD,
+    STATEMENT_GET,
     STATEMENT_DELETE
 } StatementType;
 
@@ -53,7 +53,7 @@ typedef struct
 typedef struct
 {
     StatementType type;
-    Row row_to_insert;
+    Row row_to_add;
 } Statement;
 
 #endif
