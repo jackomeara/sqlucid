@@ -3,6 +3,6 @@
 #ifndef EXECUTE_H
 #define EXECUTE_H
 
-ExecuteResult execute_statement(Statement *);
+ExecuteResult execute_statement(Statement *, Table *);
 
 #endif

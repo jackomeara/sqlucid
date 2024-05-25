@@ -2,11 +2,13 @@
 #include <stdbool.h>
 #include "input.h"
 #include "parser.h"
+#include "table.h"
 
 void print_prompt() { printf("db > "); }
 
 int main()
 {
+    Table *table = new_table();
     InputBuffer *input_buffer = new_input_buffer();
 
     // enter REPL
@@ -18,7 +20,7 @@ int main()
         // handle meta command
         if (input_buffer->buffer[0] == '.')
         {
-            switch (do_meta_command(input_buffer))
+            switch (do_meta_command(input_buffer, table))
             {
             case (META_COMMAND_SUCCESS):
                 continue;
@@ -41,5 +43,6 @@ int main()
         }
 
         // execute sql statement
+        execute_statement(&statement, table);
     }
 }

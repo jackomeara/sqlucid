@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include "constants.h"
 
 #ifndef TYPES_H
 #define TYPES_H
@@ -55,5 +56,12 @@ typedef struct
     StatementType type;
     Row row_to_add;
 } Statement;
+
+// table object
+typedef struct
+{
+    uint32_t num_rows;
+    void *pages[TABLE_MAX_PAGES];
+} Table;
 
 #endif
