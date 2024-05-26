@@ -57,11 +57,19 @@ typedef struct
     Row row_to_add;
 } Statement;
 
+// pager object
+typedef struct
+{
+    int file_descriptor;
+    uint32_t file_length;
+    void *pages[TABLE_MAX_PAGES];
+} Pager;
+
 // table object
 typedef struct
 {
+    Pager *pager;
     uint32_t num_rows;
-    void *pages[TABLE_MAX_PAGES];
 } Table;
 
 #endif
