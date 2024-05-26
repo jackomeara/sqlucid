@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include "constants.h"
 
 #ifndef TYPES_H
@@ -71,5 +72,13 @@ typedef struct
     Pager *pager;
     uint32_t num_rows;
 } Table;
+
+// cursor object
+typedef struct
+{
+    Table *table;
+    uint32_t row_num;
+    bool end_of_table;
+} Cursor;
 
 #endif

@@ -6,7 +6,7 @@
 void serialize_row(Row *, void *);
 void deserialize_row(void *, Row *);
 
-void *row_slot(Table *, uint32_t);
+void *cursor_value(Cursor *);
 Table *db_open(char *);
 void db_close(Table *table);
 
